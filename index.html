@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia do Usuário Dados Abertos: Gerenciando Conjuntos de Dados e Recursos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta Principal */
+            --primary: #FF161F; /* Vermelho (Usado para exclusão) */
+            --secondary: #034EA2; /* Azul (Cor de ação principal) */
+            --highlight: #FBB900; /* Amarelo (Usado para edição) */
+            
+            /* Tons Neutros */
+            --text-primary: #111827; /* gray-900 */
+            --text-secondary: #374151; /* gray-700 */
+            --text-light: #6b7280; /* gray-500 */
+            --bg-main: #f9fafb; /* gray-50 */
+            --bg-card: #ffffff; /* white */
+            --border-color: #e5e7eb; /* gray-200 */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+        }
+        .prose h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .prose h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding-top: 5rem; 
+            margin-top: -4rem; 
+            margin-bottom: 1rem;
+        }
+        .prose p, .prose li { color: var(--text-secondary); }
+        .prose a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+        .prose a:hover { text-decoration: underline; }
+        .prose strong { color: var(--text-primary); font-weight: 600; }
+        
+        .placeholder-img {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+        }
+        .info-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left-width: 4px;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .info-box-blue { border-left-color: var(--secondary); }
+        .info-box-yellow { border-left-color: var(--highlight); }
+        .info-box-red { border-left-color: var(--primary); }
+
+        /* Estilos do Menu Lateral */
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 0.75rem;
+            border-radius: 0.375rem;
+            color: var(--text-secondary);
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .sidebar-link:hover {
+            background-color: #f3f4f6; /* gray-100 */
+            color: var(--text-primary);
+        }
+
+        /* Active states based on section colors */
+        .sidebar-link.active-blue {
+            background-color: #eef2ff; /* indigo-50 */
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        .sidebar-link.active-yellow {
+            background-color: #fffbeb; /* light yellow, similar to info-box-yellow */
+            color: var(--highlight);
+            font-weight: 600;
+        }
+        .sidebar-link.active-red {
+            background-color: #fee2e2; /* light red, similar to info-box-red */
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .sidebar-link svg {
+            margin-right: 0.75rem;
+            width: 1rem;
+            height: 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-8 md:py-12">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">Guia do Usuário Dados Abertos</h1>
+            <p class="mt-4 text-base sm:text-lg text-gray-500">Um guia para Criar, Ler, Atualizar e Excluir (CRUD) Conjuntos de Dados e Recursos.</p>
+        </header>
+
+        <!-- Botão do Menu Mobile -->
+        <div class="md:hidden mb-6">
+            <button id="mobile-menu-button" class="w-full bg-white p-4 rounded-lg shadow-sm font-semibold text-gray-700 flex justify-between items-center">
+                <span>Navegação do Guia</span>
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="flex flex-col md:flex-row md:space-x-8">
+            <!-- Navegação Lateral -->
+            <aside id="sidebar" class="w-full md:w-1/4 lg:w-1/5 mb-8 md:mb-0 hidden md:block">
+                <div class="sticky top-8 bg-white p-4 rounded-xl shadow-sm">
+                    <nav id="desktop-nav" class="space-y-4">
+                        <div>
+                            <h4 class="px-3 font-semibold text-gray-800 mb-2 text-xs uppercase tracking-wider">Menu</h4>
+                            <ul class="space-y-1 text-sm">
+                               <li><a href="#registration" class="sidebar-link" data-section="registration">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.095a1.23 1.23 0 00.41-1.412A9.957 9.957 0 0010 12c-2.31 0-4.438.784-6.131 2.095z" /></svg>
+                                Acesso e Cadastro</a>
+                               </li>
+                               <li><a href="#api" class="sidebar-link" data-section="api">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.095a1.23 1.23 0 00.41-1.412A9.957 9.957 0 0010 12c-2.31 0-4.438.784-6.131 2.095z" /></svg>
+                                Manual API</a>
+                               </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="px-3 font-semibold text-gray-800 mb-2 text-xs uppercase tracking-wider">Menu</h4>
+                            <ul class="space-y-1 text-sm">
+
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="px-3 font-semibold text-gray-800 mb-2 text-xs uppercase tracking-wider">Conjuntos de Dados</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li><a href="#create-dataset" class="sidebar-link" data-section="create-dataset">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11.25a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z" clip-rule="evenodd" /></svg>
+                                Criar</a></li>
+                                <li><a href="#read-dataset" class="sidebar-link" data-section="read-dataset">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" /><path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 010-1.18l.877-.577a8.254 8.254 0 0115.898 0l.877.577a1.651 1.651 0 010 1.18l-.877.577a8.254 8.254 0 01-15.898 0l-.877-.577zM10 14a4 4 0 100-8 4 4 0 000 8z" clip-rule="evenodd" /></svg>
+                                Visualizar</a></li>
+                                <li><a href="#update-dataset" class="sidebar-link" data-section="update-dataset">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" /></svg>
+                                Editar</a></li>
+                                <li><a href="#delete-dataset" class="sidebar-link" data-section="delete-dataset">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" /></svg>
+                                Excluir</a></li>
+                            </ul>
+                        </div>
+                         <div>
+                            <h4 class="px-3 font-semibold text-gray-800 mb-2 text-xs uppercase tracking-wider">Recursos</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li><a href="#create-resource" class="sidebar-link" data-section="create-resource">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" /></svg>
+                                Adicionar</a></li>
+                                <li><a href="#update-resource" class="sidebar-link" data-section="update-resource">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918a4 4 0 01-1.343.885l-3.154 1.262a.5.5 0 01-.65-.65z" /><path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" /></svg>
+                                Editar ou Excluir</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Conteúdo Principal -->
+            <main class="w-full bg-white p-6 md:p-10 rounded-xl shadow-sm prose prose-lg max-w-none">
+                
+                <section id="registration">
+                    <div class="bg-blue-20 border border-blue-200 rounded-lg p-8 my-6 text-center">
+                        <h3 class="!mt-0 !pt-0 text-xl font-semibold text-gray-900 mb-2">Acesso e Cadastro</h3>
+                        <p class="text-lg mb-4 text-blue-800">Para criar, editar ou gerenciar dados, é necessário ter uma conta. Clique no botão para se cadastrar.</p>
+                        <a href="https://forms.office.com/r/HuyPaDrF87" class="inline-block text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity my-4 no-underline" style="background-color: var(--secondary); color: #fff;">
+                            Solicite seu cadastro</a>
+                        <p class="text-sm text-gray-500 mt-4">Após a solicitação de cadastro, você receberá um e-mail de confirmação em breve com seus dados de acesso.</p>
+                    </div>
+                </section>
+
+                <section id="api">
+                    <div class="bg-blue-20 border border-blue-200 rounded-lg p-8 my-6 text-center">
+                        <h3 class="!mt-0 !pt-0 text-xl font-semibold text-gray-900 mb-2">Manual API</h3>
+                        <p class="text-lg mb-4 text-blue-800">Para extração de dados via API, acesse o manual detalhado de utilização da API clicando no botão "Manual API"</p>
+                        <a href="api.html" class="inline-block text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity my-4 no-underline" style="background-color: var(--secondary); color: #fff;">
+                            Manual API
+                        </a>
+                    </div>
+                </section>
+
+                <section id="introduction">
+                    <h2>Entendendo Conjuntos de Dados e Recursos</h2>
+                    <p>No Dados Abertos, os dados são organizados em <strong>conjuntos de dados (datasets)</strong>. Um conjunto de dados é um contêiner para dados relacionados, como estatísticas de criminalidade para um ano específico ou leituras de temperatura de uma estação meteorológica. Ele inclui metadados (informações sobre os dados), como título, descrição e licença.</p>
+                    <p>Cada conjunto de dados contém um ou mais <strong>recursos (resources)</strong>. Um recurso são os dados em si, que podem ser um arquivo (como CSV, Excel ou PDF) ou um link para dados em outro site. Um único conjunto de dados pode conter múltiplos recursos, por exemplo, os mesmos dados em formatos diferentes ou dados para períodos de tempo distintos.</p>
+                    <br>
+                </section>
+
+                <section id="datasets">
+                    <h2>Gerenciando Conjuntos de Dados</h2>
+                    <div class="info-box info-box-blue">
+                        <h3 id="create-dataset">Criando um Novo Conjunto de Dados</h3>
+                        <p>Para adicionar um novo conjunto de dados, você deve ser membro de uma organização.</p>
+                        <ol class="list-decimal pl-6 space-y-6">
+                            <li>
+                                Navegue até a página "Conjuntos de Dados" e clique no botão "<strong>Adicionar Conjunto de Dados</strong>".
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/6ODT30i4sKk?si=3QEraWTRo3EY6pWf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Preencha os metadados do conjunto de dados.
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/MlZqRAaYPac?si=3Kxgll3fDcTSs0Wa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Clique em "<strong>Próximo: Adicionar Dados</strong>".
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/xN9EQoo57vo?si=21GovjOtiV85v-IJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Adicione "Informações Adicionais" (opcional).
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/LSusAfll_8o?si=VxIogBu2BmB9DsVX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Clique em "<strong>Finalizar</strong>" para criar o conjunto de dados.
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/K0bIQ-zwCBk?si=zECi4wy8Kdr2i2Iz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="info-box">
+                        <h3 id="read-dataset">Visualizando um Conjunto de Dados</h3>
+                        <p>Você pode encontrar conjuntos de dados usando a barra de pesquisa em qualquer página. Pesquisar pelo título ou por palavras-chave da descrição mostrará os conjuntos de dados relevantes. Clicar em um conjunto de dados nos resultados da pesquisa o levará à sua página principal.</p>
+                    </div>
+
+                    <div class="info-box info-box-yellow">
+                        <h3 id="update-dataset">Editando um Conjunto de Dados</h3>
+                        <p>Você pode editar qualquer conjunto de dados pertencente a uma organização da qual você é membro.</p>
+                        <ol class="list-decimal pl-6 space-y-6">
+                            <li>
+                                Na página do conjunto de dados, clique no botão "
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/3d5osOSm7Cs?si=ecVJSG47vjrotVQU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Modifique os campos necessários na tela de edição.
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/ztZE3IaEQBY?si=oCIz7PSFH3JuLPpw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Clique em "<strong>Atualizar Conjunto de Dados</strong>" para salvar suas alterações.
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/1M52cPzNw9Q?si=0UT_NTWs1LYiGs9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="info-box info-box-red">
+                        <h3 id="delete-dataset">Excluindo um Conjunto de Dados</h3>
+                        <ol class="list-decimal pl-6 space-y-6">
+                            <li>
+                                Na página de edição do conjunto de dados, clique no botão "<strong>Excluir</strong>".
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/uSW52X79ijk?si=GC2sMfv3FRadMIEj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Confirme a exclusão na caixa de diálogo.
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/TklpBdQKSdY?si=eJPonvS-d3zZ54FF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                        </ol>
+                        <p class="mt-4 text-sm"><strong>Nota:</strong> A exclusão de um conjunto de dados é uma "exclusão suave" e pode ser revertida por um administrador.</p>
+                    </div>
+                </section>
+
+                <section id="resources">
+                    <h2>Gerenciando Recursos</h2>
+                    <p>Os recursos são os arquivos ou links de dados contidos em um conjunto de dados. Eles são gerenciados a partir da página de edição do conjunto de dados.</p>
+                    <div class="info-box info-box-blue">
+                        <h3 id="create-resource">Adicionando um Novo Recurso</h3>
+                        <ol class="list-decimal pl-6 space-y-6">
+                            <li>
+                                Na página de edição, clique em "<strong>Adicionar novo recurso</strong>".
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/pQbsPP0iQjo?si=ol0eTGw44EwL-f3D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Escolha o tipo (upload ou link) e preencha as informações do recurso.
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/XtoyBR8CrWE?si=D4qXNyYQF6UqiDbO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Clique em "<strong>Adicionar</strong>" para salvar o novo recurso.
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/nBlWyS4APP8?si=ClHSaxDgxzQtTw46" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="info-box info-box-yellow">
+                        <h3 id="update-resource">Editando ou Excluindo um Recurso</h3>
+                        <ol class="list-decimal pl-6 space-y-6">
+                            <li>
+                                Na página de edição do dataset, clique no recurso que deseja gerenciar na barra lateral.
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/-HSWjlK7fJE?si=22kGh7XEUvIeclFv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Edite os detalhes e clique em "<strong>Atualizar Recurso</strong>" para salvar.
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/-HSWjlK7fJE?si=BdAimuA8Mq_lAYun" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                            <li>
+                                Para remover, clique no botão "<strong>Excluir recurso</strong>".
+                                <iframe width="1100" height="500" src="https://www.youtube.com/embed/LKc__b10cfM?si=c9YVoUSVXMvh5exY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>Este guia é baseado na documentação oficial do usuário do CKAN.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle ---
+            const menuButton = document.getElementById('mobile-menu-button');
+            const sidebar = document.getElementById('sidebar');
+            const menuIcon = document.getElementById('menu-icon');
+
+            if (menuButton) {
+                menuButton.addEventListener('click', () => {
+                    sidebar.classList.toggle('hidden');
+                    menuIcon.classList.toggle('rotate-90');
+                });
+            }
+
+            // --- Scroll-spy for sidebar ---
+            const navLinks = document.querySelectorAll('.sidebar-link');
+            // Select all elements that are scroll targets (the first section and all h3s with an ID)
+            const scrollTargets = document.querySelectorAll('#registration, main h3[id]');
+            
+            // Map section IDs to their corresponding color themes
+            const sectionColors = {
+                'registration': 'blue',
+                'create-dataset': 'blue',
+                'read-dataset': 'blue',
+                'update-dataset': 'yellow',
+                'delete-dataset': 'red',
+                'create-resource': 'blue',
+                'update-resource': 'yellow'
+            };
+
+            const activateLink = (id) => {
+                navLinks.forEach(link => {
+                    // Remove all possible active color classes from all links
+                    link.classList.remove('active-blue', 'active-yellow', 'active-red');
+                });
+
+                const targetLink = document.querySelector(`.sidebar-link[data-section="${id}"]`);
+                if (targetLink) {
+                    const color = sectionColors[id] || 'blue'; // Default to 'blue' if no specific color is mapped
+                    targetLink.classList.add(`active-${color}`);
+                }
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // The entry.target is the h3 or section itself, so we use its id directly.
+                        activateLink(entry.target.id);
+                    }
+                });
+            }, { 
+                // This margin means the highlight triggers when the element is between 40% from the top and 55% from the bottom of the viewport.
+                rootMargin: '-40% 0px -55% 0px' 
+            });
+
+            scrollTargets.forEach(target => {
+                observer.observe(target);
+            });
+            
+            // --- Highlight on click for immediate feedback ---
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const sectionId = e.currentTarget.getAttribute('data-section');
+                    if (sectionId) {
+                        activateLink(sectionId);
+                    }
+                });
+            });
+
+             // Close mobile menu on link click
+            sidebar.addEventListener('click', (e) => {
+                if (e.target.closest('a') && window.innerWidth < 768) {
+                    sidebar.classList.add('hidden');
+                    if (menuIcon) menuIcon.classList.remove('rotate-90');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
