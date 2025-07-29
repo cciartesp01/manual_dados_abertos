@@ -115,6 +115,9 @@
         <header class="text-center mb-12">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">Guia do Usuário Dados Abertos</h1>
             <p class="mt-4 text-base sm:text-lg text-gray-500">Um guia para Criar, Ler, Atualizar e Excluir (CRUD) Conjuntos de Dados e Recursos.</p>
+            <p class="mt-4 text-base sm:text-lg text-gray-500">
+                Para acessar o site do Dados Abertos, <a href="https://dadosabertos.artesp.sp.gov.br/" target="_blank" class="text-blue-600 hover:underline">clique aqui</a>.
+              </p>
         </header>
 
         <!-- Botão do Menu Mobile -->
@@ -132,25 +135,46 @@
             <aside id="sidebar" class="w-full md:w-1/4 lg:w-1/5 mb-8 md:mb-0 hidden md:block">
                 <div class="sticky top-8 bg-white p-4 rounded-xl shadow-sm">
                     <nav id="desktop-nav" class="space-y-4">
+                    <!-- <h4 class="px-3 font-semibold text-gray-1000 mb-2 text-xs uppercase tracking-wider">Menu</h4> -->
                         <div>
-                            <h4 class="px-3 font-semibold text-gray-800 mb-2 text-xs uppercase tracking-wider">Menu</h4>
+                            <h4 class="px-3 font-semibold text-gray-800 mb-2 text-xs uppercase tracking-wider">Dados abertos</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li><a href="#introducao" class="sidebar-link" data-section="introducao">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2H20C20.5523 2 21 2.44772 21 3V22.2763C21 22.5525 20.7761 22.7764 20.5 22.7764C20.4298 22.7764 20.3604 22.7615 20.2963 22.7329L12 19.0313L3.70373 22.7329C3.45155 22.8455 3.15591 22.7322 3.04339 22.4801C3.01478 22.4159 3 22.3465 3 22.2763V3C3 2.44772 3.44772 2 4 2ZM12 13.5L14.9389 15.0451L14.3776 11.7725L16.7553 9.45492L13.4695 8.97746L12 6L10.5305 8.97746L7.24472 9.45492L9.62236 11.7725L9.06107 15.0451L12 13.5Z"></path></svg>
+                                    Introdução</a>
+                                </li>
+                                <li><a href="#definicao" class="sidebar-link" data-section="definicao">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2H20C20.5523 2 21 2.44772 21 3V22.2763C21 22.5525 20.7761 22.7764 20.5 22.7764C20.4298 22.7764 20.3604 22.7615 20.2963 22.7329L12 19.0313L3.70373 22.7329C3.45155 22.8455 3.15591 22.7322 3.04339 22.4801C3.01478 22.4159 3 22.3465 3 22.2763V3C3 2.44772 3.44772 2 4 2ZM12 13.5L14.9389 15.0451L14.3776 11.7725L16.7553 9.45492L13.4695 8.97746L12 6L10.5305 8.97746L7.24472 9.45492L9.62236 11.7725L9.06107 15.0451L12 13.5Z"></path></svg>
+                                    Definição</a>
+                                </li>
+                                <li><a href="#objetivos" class="sidebar-link" data-section="objetivos">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2H20C20.5523 2 21 2.44772 21 3V22.2763C21 22.5525 20.7761 22.7764 20.5 22.7764C20.4298 22.7764 20.3604 22.7615 20.2963 22.7329L12 19.0313L3.70373 22.7329C3.45155 22.8455 3.15591 22.7322 3.04339 22.4801C3.01478 22.4159 3 22.3465 3 22.2763V3C3 2.44772 3.44772 2 4 2ZM12 13.5L14.9389 15.0451L14.3776 11.7725L16.7553 9.45492L13.4695 8.97746L12 6L10.5305 8.97746L7.24472 9.45492L9.62236 11.7725L9.06107 15.0451L12 13.5Z"></path></svg>
+                                    Objetivos</a>
+                                </li>
+                                <li><a href="#beneficios" class="sidebar-link" data-section="beneficios">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2H20C20.5523 2 21 2.44772 21 3V22.2763C21 22.5525 20.7761 22.7764 20.5 22.7764C20.4298 22.7764 20.3604 22.7615 20.2963 22.7329L12 19.0313L3.70373 22.7329C3.45155 22.8455 3.15591 22.7322 3.04339 22.4801C3.01478 22.4159 3 22.3465 3 22.2763V3C3 2.44772 3.44772 2 4 2ZM12 13.5L14.9389 15.0451L14.3776 11.7725L16.7553 9.45492L13.4695 8.97746L12 6L10.5305 8.97746L7.24472 9.45492L9.62236 11.7725L9.06107 15.0451L12 13.5Z"></path></svg>
+                                    Benefícios</a>
+                                </li>
+                                <li><a href="#superintendencia" class="sidebar-link" data-section="superintendencia">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2H20C20.5523 2 21 2.44772 21 3V22.2763C21 22.5525 20.7761 22.7764 20.5 22.7764C20.4298 22.7764 20.3604 22.7615 20.2963 22.7329L12 19.0313L3.70373 22.7329C3.45155 22.8455 3.15591 22.7322 3.04339 22.4801C3.01478 22.4159 3 22.3465 3 22.2763V3C3 2.44772 3.44772 2 4 2ZM12 13.5L14.9389 15.0451L14.3776 11.7725L16.7553 9.45492L13.4695 8.97746L12 6L10.5305 8.97746L7.24472 9.45492L9.62236 11.7725L9.06107 15.0451L12 13.5Z"></path></svg> 
+                                    Superintendencias</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="px-3 font-semibold text-gray-800 mb-2 text-xs uppercase tracking-wider">Cadastro e API</h4>
                             <ul class="space-y-1 text-sm">
                                <li><a href="#registration" class="sidebar-link" data-section="registration">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.095a1.23 1.23 0 00.41-1.412A9.957 9.957 0 0010 12c-2.31 0-4.438.784-6.131 2.095z" /></svg>
-                                Acesso e Cadastro</a>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4.99509C3 3.89323 3.89262 3 4.99509 3H19.0049C20.1068 3 21 3.89262 21 4.99509V19.0049C21 20.1068 20.1074 21 19.0049 21H4.99509C3.89323 21 3 20.1074 3 19.0049V4.99509ZM6.35687 18H17.8475C16.5825 16.1865 14.4809 15 12.1022 15C9.72344 15 7.62182 16.1865 6.35687 18ZM12 13C13.933 13 15.5 11.433 15.5 9.5C15.5 7.567 13.933 6 12 6C10.067 6 8.5 7.567 8.5 9.5C8.5 11.433 10.067 13 12 13Z"></path></svg>
+                                Cadastro</a>
                                </li>
                                <li><a href="#api" class="sidebar-link" data-section="api">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.095a1.23 1.23 0 00.41-1.412A9.957 9.957 0 0010 12c-2.31 0-4.438.784-6.131 2.095z" /></svg>
-                                Manual API</a>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM16.4645 15.5355L20 12L16.4645 8.46447L15.0503 9.87868L17.1716 12L15.0503 14.1213L16.4645 15.5355ZM6.82843 12L8.94975 9.87868L7.53553 8.46447L4 12L7.53553 15.5355L8.94975 14.1213L6.82843 12ZM11.2443 17L14.884 7H12.7557L9.11597 17H11.2443Z"></path></svg>
+                                Documentação API</a>
                                </li>
                             </ul>
                         </div>
-                        <div>
-                            <h4 class="px-3 font-semibold text-gray-800 mb-2 text-xs uppercase tracking-wider">Menu</h4>
-                            <ul class="space-y-1 text-sm">
 
-                            </ul>
-                        </div>
                         <div>
                             <h4 class="px-3 font-semibold text-gray-800 mb-2 text-xs uppercase tracking-wider">Conjuntos de Dados</h4>
                             <ul class="space-y-1 text-sm">
@@ -185,12 +209,107 @@
 
             <!-- Conteúdo Principal -->
             <main class="w-full bg-white p-6 md:p-10 rounded-xl shadow-sm prose prose-lg max-w-none">
+
+                <section id="dados_abertos">
+                    <h2>A Importância Estratégica de Alimentar Ativamente o Portal de Dados Abertos da ARTESP</h2>
+                    <ol>
+                        <section id="introducao">
+                            <li>
+                                <h3>1. Introdução</h3>
+                                <p style="text-align: justify;">A Agência Reguladora de Serviços Públicos Delegados de Transporte do Estado de São Paulo (ARTESP) tem como missão fiscalizar, controlar e regular os serviços públicos de transporte delegados no Estado sendo rodovias, aeroportos (quando delegados), hidrovias, transporte metroferroviário e transporte coletivo intermunicipal.</p>
+                                <br>
+                                <p style="text-align: justify;">
+                                    Nesse contexto, o Portal de Dados Abertos da ARTESP é uma ferramenta estratégica para garantir a transparência, fomentar a inovação e melhorar os serviços prestados à sociedade. 
+                                    Mais do que uma exigência legal, a manutenção ativa deste portal fortalece a governança pública, apoia a gestão baseada em evidências e viabiliza serviços digitais mais eficientes e integrados.
+                                </p>
+                            </li>
+                        </section>
+
+                        <section id="definicao">
+                            <li>
+                                <h3>2. O que são Dados Abertos?</h3>
+                                <p style="text-align: justify;">Segundo o Decreto nº <strong>68.769/2024</strong>, dados abertos são dados públicos disponibilizados digitalmente em formatos estruturados, abertos e de livre acesso. Eles devem ser:</p>
+                                <ul style="list-style-type: disc; padding-left: 20px;">
+                                    <li>Processáveis por máquina.</li>
+                                    <li>Referenciados na internet.</li>
+                                    <li>Disponíveis sob licenças abertas que permitam seu uso, reuso e redistribuição.</li>
+                                </ul>
+                                <br>
+                                <p><strong>Importante:</strong> Dados sigilosos ou protegidos por legislação não se enquadram como dados abertos.</p>
+                            </li>
+                        </section>
+
+                        <section id="objetivos">
+                            <li>
+                                <h3>3. Objetivos estratégicos da iniciativa de dados abertos</h3>
+                                <p style="text-align: justify;">Ao alimertamos de forma diligente o nosso portal, atigimos diversos objetivos estratégicos:</p>
+                                <ul style="list-style-type: disc; padding-left: 20px;">
+                                    <li><strong>Promover a transparência pública:</strong> Disponibilização de dados acessíveis à sociedade em formatos abertos.</li>
+                                    <li><strong>Facilitar o intercâmbio de dados:</strong> Viabilizar a troca de informações entre órgãos da administração pública e entidades federativas.</li>
+                                    <li><strong>Garantir o acesso ao cidadão:</strong> Permitir que os cidadãos acessem os dados produzidos ou acumlados pela ARTESP, desde que não haja proibição legal expressa.</li>
+                                    <li><strong>Viablizar serviços públicos digitais integrados:</strong> Preparar o terreno para a oferta de serviços públicos digitais e integrados.</li>
+                                    <li><strong>Incentivar a participação social:</strong> Estimular o engajamento da sociedade e melhorar a qualidade dos serviços prestados.</li>
+                                    <li><strong>Fomentar a inovação e novos negócios:</strong> Apoiar o desenvolvimento tecnológico, a inovação e o surgimento de startups e soluções no setor de transporte.</li>
+                                    <li><strong>Apoiar a gestão baseada em evidências:</strong> Fornecer dados concretos para decisões estratégicas internas e externas.</li>
+                                </ul>
+                            </li>
+                        </section>
+
+                        <section id="beneficios">
+                            <li>
+                                <h3>4. Benefícios diretos para a ARTESP</h3>
+                                <p style="text-align: justify;">Mais do que uma obrigação legal, a contribuição ativa para o portal de dados abertos traz benefícios institucionais tangíveis.</p>
+                                <ul style="list-style-type: disc; padding-left: 20px;">
+                                    <li><strong>Adequação normativa:</strong> Atendimento às exigências legais de transparência e dados abertos, conforme o decreto n° <strong> 68.769/2024</strong>.</li>
+                                    <li><strong>Fortalecimento da imagem institucional:</strong> Melhoria da percepção pública da ARTESP perante a sociedade e a imprensa.</li>
+                                    <li><strong>Redução de damandas via LAI:</strong> Diminição significativa de solicitações via <strong> Lei de Acesso à Informação (LAI)</strong>, ao disponibilizar os dados diretamente no portal.</li>
+                                    <li><strong>Estimulo a parcerias estratégicas:</strong> Facilitação de colaborações com universidades, centros de pesquisa e startups.</li>
+                                    <li><strong>Eficiência interna:</strong> Fortalecimento da cultura de gestão baseada em dados, promovendo decisões mais informadas e eficientes.</li>
+                                    <li><strong>Facilidade em auditorias:</strong> Simplificação de auditorias por órgãos de controle e pela sociedade civil.</li>
+                                    <li><strong>Infraestrutura sustetavél e de baixo custo:</strong> Uso de tecnologias abertas como CKAN (publicação de dados), PostgreSQL (armazenamento robusto), Apache Solr (pesquisa avançada) e Ubuntu (sistema operacional estável), 
+                                        evitando altos custos de licenciamento e garantindo escalabilidade.</li>
+                                </ul>
+                            </li>
+                        </section>
+
+                        <section id="superintendencia">
+                            <li>
+                                <h3>5. O papel das superintendências</h3>
+                                <p style="text-align: justify;">A alimentação do Portal de Dados Abertos não é responsabilidade exclusiva da área de TI. Cada superintendência tem responsabilidade institucional direta pela produção regular e organizada de dados,
+                                    com publicação na plataforma CKAN, escolhida com base tecnológica do portal. A superintendência de tecnologia da informação e engenharia digital (SUTID) atua como facilitadora técnica, mas a governança 
+                                    e qualidade dos dados são de resposabilidade das respctivas áreas finalísticas.
+                                </p>
+                                <br>
+                                <p>Exemplos de contibuições esperadas por superintendência:</p>
+                                <ul style="list-style-type: disc; padding-left: 20px;">
+                                    <li><strong>SUROD (Rodoviária):</strong> Contratos ativos, medições de fluxo, níveis de serviço, relatórios de fiscalização e malha pavimentada.</li>
+                                    <li><strong>SUMEF (Metroferroviária):</strong> Programações de operação, indicadores de viagens realizadas vs. planejadas, falhas operacionais, integração modal.</li>
+                                    <li><strong>SUCOL (Transportes Coletivos):</strong> Passageiros transportados mensalmente, pontualidade das partidas, fiscalizações nos terminais, rotas intermunicipais.</li>
+                                    <li><strong>SUAEP (Aeroportuária):</strong> Frequência de voos, passageiros por aeroporto, capacidade operacional, manutenções.</li>
+                                    <li><strong>SUHID (Hidroviária):</strong> Rotas fluviais, volume transportado, número de embarcações, impactos ambientais.</li>
+                                    <li><strong>SUREF (Regulação Econômico-Financeira):</strong> Tarifas atuais, receitas e despesas contratuais, equilíbrio econômico-financeiro, inadimplementos.</li>
+                                    <li><strong>SUINV (Novos Investimentos):</strong> Estudos em andamento, projetos em viabilidade, cronogramas de concessões, PPPs.</li>
+                                    <li><strong>SUMAS (Meio Ambiente e Social):</strong> Relatórios de impacto, medidas compensatórias, indicadores de sustentabilidade e ações sociais.</li>
+                                    <li><strong>SUADI (Administração Interna):</strong> Licitações concluídas, contratos vigentes, folha agregada, execução orçamentária por área.</li>
+                                    <li><strong>SUTID (Tecnologia da Informação e Engenharia Digital):</strong> Disponibilidade de sistemas, atualizações do CKAN, logs de acesso, indicadores de incidentes.</li>
+                                    <li><strong>Cabinete e Assessorias Técnicas:</strong> Dados sobre governança institucional, planejamento estratégico, execução de metas, planos plurianuais, campanhas de transparência ativa, relatórios de auditoria e reuniões com partes interessadas.</li>
+                                </ul>
+                                <br>
+                                <p><strong>Importante:</strong> Todas as superintendências têm o dever de alimentar e compartilhar informações e dados com a SUTID por meio dos canais e sistemas oficiais definidos. Também é necessário promover a capacitação contínua das equipes, 
+                                    com participação ativa em cursos, treinamentos e oficinas voltadas à governança de dados, padronização, organização da informação e cultura digital.
+                                </p>
+                            </li>
+                        </section>
+                        <br>
+                      </ol>
+                </section>
                 
                 <section id="registration">
+                    <h2>Cadastro para acesso e documentação de API</h2>
                     <div class="bg-blue-20 border border-blue-200 rounded-lg p-8 my-6 text-center">
-                        <h3 class="!mt-0 !pt-0 text-xl font-semibold text-gray-900 mb-2">Acesso e Cadastro</h3>
+                        <h3 class="!mt-0 !pt-0 text-xl font-semibold text-gray-900 mb-2">Faça seu cadastro para acessar</h3>
                         <p class="text-lg mb-4 text-blue-800">Para criar, editar ou gerenciar dados, é necessário ter uma conta. Clique no botão para se cadastrar.</p>
-                        <a href="https://forms.office.com/r/HuyPaDrF87" class="inline-block text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity my-4 no-underline" style="background-color: var(--secondary); color: #fff;">
+                        <a href="https://forms.office.com/r/HuyPaDrF87" target="_blank" class="inline-block text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity my-4 no-underline" style="background-color: var(--secondary); color: #fff;">
                             Solicite seu cadastro</a>
                         <p class="text-sm text-gray-500 mt-4">Após a solicitação de cadastro, você receberá um e-mail de confirmação em breve com seus dados de acesso.</p>
                     </div>
@@ -198,17 +317,18 @@
 
                 <section id="api">
                     <div class="bg-blue-20 border border-blue-200 rounded-lg p-8 my-6 text-center">
-                        <h3 class="!mt-0 !pt-0 text-xl font-semibold text-gray-900 mb-2">Manual API</h3>
+                        <h3 class="!mt-0 !pt-0 text-xl font-semibold text-gray-900 mb-2">Documentação de utilização da API</h3>
                         <p class="text-lg mb-4 text-blue-800">Para extração de dados via API, acesse o manual detalhado de utilização da API clicando no botão "Manual API"</p>
-                        <a href="api.html" class="inline-block text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity my-4 no-underline" style="background-color: var(--secondary); color: #fff;">
+                        <a href="api.html" target="_blank" class="inline-block text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity my-4 no-underline" style="background-color: var(--secondary); color: #fff;">
                             Manual API
                         </a>
                     </div>
                 </section>
 
-                <section id="introduction">
+                <section id="explicacao">
                     <h2>Entendendo Conjuntos de Dados e Recursos</h2>
                     <p>No Dados Abertos, os dados são organizados em <strong>conjuntos de dados (datasets)</strong>. Um conjunto de dados é um contêiner para dados relacionados, como estatísticas de criminalidade para um ano específico ou leituras de temperatura de uma estação meteorológica. Ele inclui metadados (informações sobre os dados), como título, descrição e licença.</p>
+                    <br>
                     <p>Cada conjunto de dados contém um ou mais <strong>recursos (resources)</strong>. Um recurso são os dados em si, que podem ser um arquivo (como CSV, Excel ou PDF) ou um link para dados em outro site. Um único conjunto de dados pode conter múltiplos recursos, por exemplo, os mesmos dados em formatos diferentes ou dados para períodos de tempo distintos.</p>
                     <br>
                 </section>
@@ -346,10 +466,11 @@
             // --- Scroll-spy for sidebar ---
             const navLinks = document.querySelectorAll('.sidebar-link');
             // Select all elements that are scroll targets (the first section and all h3s with an ID)
-            const scrollTargets = document.querySelectorAll('#registration, main h3[id]');
+            // const scrollTargets = document.querySelectorAll('main section[id], main h3[id]');
             
             // Map section IDs to their corresponding color themes
             const sectionColors = {
+                'dados_abertos': 'black',
                 'registration': 'blue',
                 'create-dataset': 'blue',
                 'read-dataset': 'blue',
@@ -362,7 +483,7 @@
             const activateLink = (id) => {
                 navLinks.forEach(link => {
                     // Remove all possible active color classes from all links
-                    link.classList.remove('active-blue', 'active-yellow', 'active-red');
+                    link.classList.remove('active-black','active-blue', 'active-yellow', 'active-red');
                 });
 
                 const targetLink = document.querySelector(`.sidebar-link[data-section="${id}"]`);
